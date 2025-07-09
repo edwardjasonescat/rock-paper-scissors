@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock-Paper-Scissors</title>
+</head>
+<body>
+    <script>
+        let computerScore = 0;
+        let humanScore = 0;
+
+        function getComputerChoice() {
+            let randomNumber = Math.floor(Math.random()*100);
+            let computerChoice = "";
+            if (randomNumber <= 33) {
+                computerChoice = ("rock");
+            } else if (randomNumber >=34 && randomNumber <= 66) {
+                computerChoice = ("paper");
+            } else if (randomNumber >=67) {
+                computerChoice = ("scissors");
+            }
+            return(computerChoice);
+        }
+        let computerChoice = getComputerChoice();
+        console.log(computerChoice);
+
+        function getHumanChoice() {
+            let humanChoice = prompt("Rock, Paper or Scissors?");
+            return(humanChoice.toLowerCase());
+        }
+        let humanChoice = getHumanChoice();
+        console.log(humanChoice);
+
+        function whoWon() {
+            if (humanChoice === "rock" && computerChoice === "rock") {
+                alert("Draw!");
+                return;
+            } else if (humanChoice === "rock" && computerChoice === "paper") {
+                alert("Computer Won!");
+                computerScore = computerScore+1;
+                return computerScore;
+            } else if (humanChoice === "rock" && computerChoice === "scissors") {
+                alert("Human Won!")
+                humanScore = humanScore+1;
+                return humanScore;
+            } else if (humanChoice === "scissors" && computerChoice === "scissors") {
+                alert("Draw!");
+                return;
+            } else if (humanChoice === "scissors" && computerChoice === "rock") {
+                alert("Computer Won!");
+                computerScore = computerScore+1;
+                return computerScore;
+            } else if (humanChoice === "scissors" && computerChoice === "paper") {
+                alert("Human Won!")
+                humanScore = humanScore+1;
+                return humanScore;
+            } else if (humanChoice === "paper" && computerChoice === "paper") {
+                alert("Draw!");
+                return;
+            } else if (humanChoice === "paper" && computerChoice === "scissors") {
+                alert("Computer Won!");
+                computerScore = computerScore+1;
+                return computerScore;
+            } else if (humanChoice === "paper" && computerChoice === "rock") {
+                alert("Human Won!")
+                humanScore = humanScore+1;
+                return humanScore;
+            }
+        }
+        console.log(whoWon());
+    </script>
+</body>
+</html>
