@@ -7,10 +7,11 @@
 </head>
 <body>
     <script>
-        let computerScore = 0;
-        let humanScore = 0;
-
-        function getComputerChoice() {
+        function getComputerChoice() { //Gets computer selection
+            /*Implements a logic to generate a random number, then use thresholds to determine the computer's choice: 
+            if the number is less than or equal to 33, return 'Rock'; 
+            if it's between 34 and 66, return 'Paper'; 
+            and if it's 67 or higher, return 'Scissors'*/
             let randomNumber = Math.floor(Math.random()*100);
             let computerChoice = "";
             if (randomNumber <= 33) {
@@ -22,53 +23,99 @@
             }
             return(computerChoice);
         }
-        let computerChoice = getComputerChoice();
-        console.log(computerChoice);
+        /*console.log(getComputerChoice());*/
 
-        function getHumanChoice() {
+        function getHumanChoice() { //Get the human input
+            /*Create logic to obtain the user's choice through a prompt, and convert the input to lowercase to make it case-insensitive.*/
             let humanChoice = prompt("Rock, Paper or Scissors?");
-            return(humanChoice.toLowerCase());
+            if (humanChoice.toLowerCase() === "rock") {
+                return humanChoice.toLowerCase();
+            } else if (humanChoice.toLowerCase() === "paper") {
+                return humanChoice.toLowerCase();
+            } else if (humanChoice.toLowerCase() === "scissors") {
+                return humanChoice.toLowerCase();
+            } else {
+                alert("Invalid choice, please select again: Rock, Paper or Scissors?")
+                return getHumanChoice();
+            }
+            
         }
-        let humanChoice = getHumanChoice();
-        console.log(humanChoice);
+        /*console.log(getHumanChoice());*/
 
-        function whoWon() {
+        function playRound() { //Plays the round and returns the result
+            /*Creates a logic to know who won the round
+            
+            Rock draws against Rock
+            Rock losses against Paper 
+            Rock wins against Scissors
+
+            Scissors draws against Scissors
+            Scissors losses against Rock
+            Scissors wins against Paper
+
+            Paper draws against Paper
+            Paper losses against Scissors
+            Paper wins against Rock*/
+            const computerChoice = getComputerChoice();
+            const humanChoice = getHumanChoice();
+
+            let result;
             if (humanChoice === "rock" && computerChoice === "rock") {
-                alert("Draw!");
-                return;
+                alert("Draw! " + humanChoice + " will draw against " + computerChoice);
+                result = "Draw";
             } else if (humanChoice === "rock" && computerChoice === "paper") {
-                alert("Computer Won!");
-                computerScore = computerScore+1;
-                return computerScore;
+                alert("You lose! " + computerChoice + " beats " + humanChoice);
+                result = "Lose";
             } else if (humanChoice === "rock" && computerChoice === "scissors") {
-                alert("Human Won!")
-                humanScore = humanScore+1;
-                return humanScore;
+                alert("You Won! " + humanChoice + " beats " + computerChoice);
+                result = "Win";
             } else if (humanChoice === "scissors" && computerChoice === "scissors") {
-                alert("Draw!");
-                return;
+                alert("Draw! " + humanChoice + " will draw against " + computerChoice);
+                result = "Draw";
             } else if (humanChoice === "scissors" && computerChoice === "rock") {
-                alert("Computer Won!");
-                computerScore = computerScore+1;
-                return computerScore;
+                alert("You lose! " + computerChoice + " beats " + humanChoice);
+                result = "Lose";
             } else if (humanChoice === "scissors" && computerChoice === "paper") {
-                alert("Human Won!")
-                humanScore = humanScore+1;
-                return humanScore;
+                alert("You Won! " + humanChoice + " beats " + computerChoice)
+                result = "Win";
             } else if (humanChoice === "paper" && computerChoice === "paper") {
-                alert("Draw!");
-                return;
+                alert("Draw! " + humanChoice + " will draw against " + computerChoice);
+                result = "Draw";
             } else if (humanChoice === "paper" && computerChoice === "scissors") {
-                alert("Computer Won!");
-                computerScore = computerScore+1;
-                return computerScore;
+                alert("You lose! " + computerChoice + " beats " + humanChoice);
+                result = "Lose";
             } else if (humanChoice === "paper" && computerChoice === "rock") {
-                alert("Human Won!")
-                humanScore = humanScore+1;
-                return humanScore;
+                alert("You Won! " + humanChoice + " beats " + computerChoice);
+                result = "Win";
+            }
+            return result;
+        }
+
+        function playGame() { //Plays rounds until 5
+            /*Initialize the score variables with value 0*/
+            let humanScore = 0;
+            let computerScore = 0;
+            
+            /*Loop until scores are greater than 5*/
+            while (humanScore < 5 && computerScore < 5) {
+                const result = playRound();
+
+                if (result === "Win") {
+                    humanScore = humanScore + 1; //If human wins, increment Human score to 1
+                } else if (result === "Lose") {
+                    computerScore = computerScore + 1; //If computer wins, increment computer score to 1
+                }
+                console.log("Your Score: " + humanScore + "\nComputer Score: " + computerScore)
+            } 
+
+            /*Announces the winner if score is equals to 5*/
+            if (humanScore === 5) {
+                alert("Congratulations! You won the game.");
+            } else {
+                alert("Game Over! The computer won.")
             }
         }
-        console.log(whoWon());
+        playGame();
     </script>
 </body>
 </html>

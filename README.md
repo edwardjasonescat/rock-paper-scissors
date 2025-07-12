@@ -3,7 +3,7 @@ Rock-Paper-Scissors Game Algorithm
 Generate a random selection of either Rock, Paper, or Scissors for the computer.
 Prompt the user to input their choice.
 Display both the player's and computer's choices, along with the current score.
-Create a logic to select of the Rock-Paper-Scissors
+Create a logic to select the winner of the Rock-Paper-Scissors round
     Rock draws against Rock
     Rock losses against Paper
     Rock wins against Scissors
