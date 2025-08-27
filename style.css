@@ -1,0 +1,23 @@
+h1 {
+    display: flex;
+    justify-content: center;
+}
+.main {
+    display: flex;
+    justify-content: center;
+}
+div {
+    border: 1px solid black;
+}
+.human, .human-selection-screen, .human-screen, .computer-screen, .computer {
+    width: 300px;
+    height: 600px;
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    display: flex;
+    justify-content: flex-end;
+    align-content: space-between;
+}
